@@ -3,6 +3,7 @@ import { BiLogoTwitter } from "react-icons/bi";
 import { BiLogoInstagram } from "react-icons/bi";
 import { TiUser } from "react-icons/ti";
 import { FcLike } from "react-icons/fc";
+import modalProps from '../ImageModal/imageModal.types';
 import clsx from 'clsx';
 import css from '../ImageModal/ImageModal.module.css'
 
@@ -25,16 +26,16 @@ const customStyles = {
     maxHeight: '600px'
   },
    overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    // position: "fixed",
+    // top: '0',
+    // left: '0',
+    // right: '0',
+    // bottom: '0',
     backgroundColor: "rgba(0, 0, 0, 0.75)",
   },
 };
 
-export default function ImageModal({ onOpen, onClose, image, like, name, twit, insta }) {
+export default function ImageModal({ onOpen, onClose, image, like, name, twit, insta }: modalProps) {
 const twitColor = clsx(css.iconModal, css.iconTwitColor)
 const instColor = clsx(css.iconModal, css.iconInstColor)
      return (

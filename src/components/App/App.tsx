@@ -8,26 +8,27 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 import NotFound from '../NotFound/NotFound';
+import { data, image } from './App.types';
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [IsOpen, setIsOpen] = useState(false);
-  const [imgUrl, setImgsUrl] = useState([]);
-  const [showBtn, setShowBtn] = useState(false)
-  const [userName, setUserName] = useState(null);
-  const [likes, setLikes] = useState(null);
-  const [twitter, setTwitter] = useState(null);
-  const [instagram, setInstagram] = useState(null);
-  const [notFound, setNotFound] = useState(false);
+  const [images, setImages] = useState<image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [IsOpen, setIsOpen] = useState<boolean>(false);
+  const [imgUrl, setImgsUrl] = useState<string>("");
+  const [showBtn, setShowBtn] = useState<boolean|number>(false)
+  const [userName, setUserName] = useState<null|string>(null);
+  const [likes, setLikes] = useState<null|number>(null);
+  const [twitter, setTwitter] = useState<null|string>(null);
+  const [instagram, setInstagram] = useState<null|string>(null);
+  const [notFound, setNotFound] = useState<boolean>(false);
   
 
   
 
-  const handleSearch = async (newQuery) => {
+  const handleSearch = async (newQuery: string): Promise<void>=> {
     setQuery(newQuery);
     setPage(1);
     setImages([]);
@@ -35,21 +36,21 @@ export default function App() {
      
   
   
-  const handleLoadMore = () => {
+  const handleLoadMore = ():void => {
       setPage(page+1)
   }
 
-  useEffect(() => {
+  useEffect(():void => {
     if (query === "") {
       return;
     }
 
   
     
-    async function getImages() {
+    async function getImages<T extends data>():Promise<void> {
        try {
-        setIsLoading(true)
-         const data = await fetchImages(query, page);
+         setIsLoading(true);
+         const data = await fetchImages<T>(query, page);
          const curentImages = data.results;
          setImages((prevImages) => { return [...prevImages, ...curentImages] });
          const totalPages = data.total_pages;
@@ -67,7 +68,7 @@ export default function App() {
 
   
 
-  function openModal(url, likes, userName, socTwit, socInsta) {
+  function openModal(url:string, likes: number, userName: string, socTwit: string, socInsta: string): void {
     setIsOpen(true);
     setImgsUrl(url);
     setUserName(userName);
@@ -78,7 +79,7 @@ export default function App() {
   }
 
 
-  function closeModal() {
+  function closeModal(): void {
     setIsOpen(false);
   }
     
