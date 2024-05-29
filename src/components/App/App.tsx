@@ -33,8 +33,7 @@ export default function App() {
     setPage(1);
     setImages([]);
   }
-     
-  
+
   
   const handleLoadMore = ():void => {
       setPage(page+1)

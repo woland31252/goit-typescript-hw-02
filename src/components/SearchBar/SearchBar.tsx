@@ -1,23 +1,15 @@
-// import { Field, Form, Formik } from "formik";
-import { FormEvent } from 'react';
- import {
-   Formik,
-   FormikHelpers,
-   FormikProps,
-   Form,
-   Field,
-   FieldProps,
- } from 'formik';
+import { Field, Form, Formik } from "formik";
 import toast, { Toaster } from 'react-hot-toast';
 import { SlMagnifier } from "react-icons/sl";
 import { useId } from "react";
-import { searchBarProps } from '../SearchBar/SearchBar.types'
+import { initValues, searchBarProps } from '../SearchBar/SearchBar.types'
 import css from '../SearchBar/SearchBar.module.css';
 
 export default function SearchBar ({ onSearch}: searchBarProps) {
     const id = useId();
+    const initialValues: initValues={query: ""} 
      return (
-        <Formik initialValues={{ query: '' }}
+        <Formik initialValues={initialValues}
                     onSubmit={(values, actions) => {
                         onSearch(values.query);
                         if (values.query === "") {

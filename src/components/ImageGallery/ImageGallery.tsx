@@ -1,6 +1,6 @@
 import ImageCard from '../ImageCard/ImageCard';
 import { imageGalleryProps } from '../ImageGallery/imageGallery.types';
-import css from '../ImageCard/ImageCard.module.css';
+import css from '../ImageGallery/ImageGallery.module.css';
 
 export default function ImageGallery({ collection, onClick}: imageGalleryProps) {
     return (
